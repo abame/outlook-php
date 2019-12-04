@@ -1,5 +1,5 @@
 {
-    "name": "abame/outlook-php",
+    "name": "sagar/outlook-php",
     "description": "The api to handle outlook rest api using php",
     "keywords": ["php-rest-outlook", "outlook"],
     "license": "MIT",
