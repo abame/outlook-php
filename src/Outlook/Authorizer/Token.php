@@ -12,7 +12,7 @@ use Carbon\Carbon;
  * Class Token
  * @package Outlook\Authorizer
  */
-class Token
+class Token implements \JsonSerializable
 {
     /**
      * @var string
@@ -191,5 +191,26 @@ class Token
     public function __toString()
     {
         return $this->accessToken;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'accessToken' => $this->accessToken,
+            'refreshToken' => $this->refreshToken,
+            'tokenType' => $this->tokenType,
+            'scopes' => $this->scopes,
+            'extExpiresIn' => $this->extExpiresIn,
+            'expiresIn' => $this->expiresIn,
+            'idToken' => $this->idToken,
+            'createdAt' => $this->createdAt->format('Y-m-d H:i:s'),
+        ];
     }
 }
